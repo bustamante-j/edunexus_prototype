@@ -71,7 +71,7 @@ export function LoginPage() {
                   autoComplete="username"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  placeholder="name@balili.edu.ph"
+                  placeholder="name@edu.ph"
                   type="email"
                   required
                 />
@@ -102,8 +102,8 @@ export function LoginPage() {
 
           <div className="presentation-access">
             <div className="presentation-access__heading">
-              <span>Presentation access</span>
-              <small>Select an account to fill the form</small>
+              <span>Login credentials</span>
+              <small>Password: <strong>{users[0]?.password}</strong></small>
             </div>
             <div className="presentation-access__list">
               {users.map((user) => {
@@ -134,4 +134,3 @@ export function LoginPage() {
     </main>
   );
 }
-

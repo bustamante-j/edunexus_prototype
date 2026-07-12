@@ -22,8 +22,8 @@ All accounts use the password `12345678`.
 | Role | Email |
 | --- | --- |
 | School Head | `joshkane@edu.ph` |
-| Administrative Officer | `maria.santos@balili.edu.ph` |
-| Class Adviser | `joshua@balili.edu.ph` |
+| Administrative Officer | `diane@edu.ph` |
+| Class Adviser | `joshua@edu.ph` |
 
 The login page can fill any of these accounts automatically.
 
@@ -88,4 +88,3 @@ Generated school forms are review-ready prototypes. School personnel must still 
 This version is intentionally a client-side prototype. Its login, role boundaries, and records are stored in the browser and are meant only for controlled demonstrations with fictional data.
 
 Do not enter real learner information into this prototype. A production implementation should add server-side authentication, a secured database, row-level access policies, encryption, audit retention, backups, input validation, rate limiting, and formal Data Privacy Act controls.
-

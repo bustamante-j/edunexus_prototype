@@ -43,6 +43,7 @@
 .presentation-access__heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
 .presentation-access__heading span { color: var(--ink-800); font-size: 10px; font-weight: 800; text-transform: uppercase; }
 .presentation-access__heading small { color: var(--ink-400); font-size: 9px; }
+.presentation-access__heading small strong { color: var(--navy-800); font-size: 10px; }
 .presentation-access__list { display: grid; border: 1px solid var(--line); border-radius: 4px; }
 .presentation-access__list > button { display: flex; width: 100%; min-height: 51px; align-items: center; gap: 10px; padding: 7px 9px; text-align: left; background: #fff; border: 0; border-bottom: 1px solid var(--line-soft); }
 .presentation-access__list > button:last-child { border-bottom: 0; }
@@ -265,4 +266,3 @@
 
 .skeleton { display: block; min-height: 18px; background: #e8edf1; border-radius: 3px; animation: pulse 1.5s ease-in-out infinite; }
 @keyframes pulse { 50% { opacity: 0.55; } }
-

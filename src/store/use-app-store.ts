@@ -425,7 +425,11 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: "edunexus-prototype-v1",
+      merge: (persistedState, currentState) => ({
+        ...currentState,
+        ...(persistedState as Partial<AppState>),
+        users: currentState.users,
+      }),
     },
   ),
 );
-
