@@ -94,7 +94,7 @@ const adviserNames = [
 const gradeSections: Array<{ gradeLevel: GradeLevel; names: string[] }> = [
   {
     gradeLevel: "Kindergarten",
-    names: ["Sampaguita", "Rosal", "Gumamela", "Ilang-Ilang", "Sunflower", "Daisy"],
+    names: ["Sampaguita", "Rosal", "Gumamela", "Ilang-Ilang", "Waling-Waling", "Camia"],
   },
   { gradeLevel: "Grade 1", names: ["Narra", "Molave", "Acacia", "Yakal"] },
   { gradeLevel: "Grade 2", names: ["Narra", "Molave", "Acacia", "Yakal"] },
@@ -164,35 +164,41 @@ export const USERS: AppUser[] = [
 ];
 
 const maleFirstNames = [
-  "Aaron", "Adrian", "Aldrin", "Andrei", "Angelo", "Anton", "Bryan", "Caleb",
-  "Carlo", "Cedric", "Christian", "Daniel", "Darius", "David", "Diego", "Elijah",
-  "Enzo", "Ethan", "Gabriel", "Gian", "Harvey", "Ian", "Jacob", "James", "Jericho",
-  "Joaquin", "John", "Joshua", "Kenzo", "Liam", "Lucas", "Marco", "Matthew", "Miguel",
-  "Nathan", "Noah", "Paolo", "Rafael", "Samuel", "Vincent",
+  "Juan Miguel", "Jose Antonio", "John Paul", "Mark Angelo", "Carlo Miguel", "Paolo Andres",
+  "Luis Gabriel", "Rafael Jose", "Miguel Angelo", "Joshua Daniel", "Nathaniel John", "Jericho Luis",
+  "Gabriel Paul", "Angelo Rafael", "Christian Jose", "Adrian Miguel", "Aldrin James", "Bryan Carlo",
+  "Daniel Marco", "Elijah Jose", "Enzo Gabriel", "Ethan Luis", "Gian Paolo", "Harvey John",
+  "Ian Rafael", "Jacob Miguel", "James Carlo", "Joaquin Luis", "Kenzo Paul", "Liam Andres",
+  "Lucas Gabriel", "Marco Antonio", "Matthew Jose", "Nathan Carlo", "Noah Miguel", "Paolo Miguel",
+  "Rafael Andres", "Samuel Luis", "Vincent Paul", "Aaron Joshua", "Andrei Gabriel", "Anton Miguel",
+  "Caleb Jose", "Cedric Paolo", "David Angelo", "Diego Luis", "Jerome Carlo", "Nico Rafael",
 ];
 
 const femaleFirstNames = [
-  "Abigail", "Althea", "Amara", "Andrea", "Angel", "Angela", "Beatrice", "Bianca",
-  "Camille", "Carla", "Celine", "Chloe", "Danica", "Daniela", "Elena", "Ella",
-  "Erika", "Faith", "Frances", "Gabriela", "Hannah", "Isabella", "Jasmine", "Julia",
-  "Kathleen", "Kiara", "Leah", "Liana", "Louise", "Mae", "Mara", "Maria", "Mikaela",
-  "Nicole", "Patricia", "Rachelle", "Samantha", "Sophia", "Trisha", "Ysabel",
+  "Maria Angela", "Mary Grace", "Anne Patricia", "Angelica Mae", "Maria Isabel", "Anna Beatrice",
+  "Camille Rose", "Carla Mae", "Catherine Joy", "Danica Mae", "Elena Marie", "Ella Grace",
+  "Erika Joy", "Faith Anne", "Frances Mae", "Gabriela Rose", "Hannah Grace", "Isabella Mae",
+  "Jasmine Anne", "Julia Marie", "Kathleen Joy", "Kiara Mae", "Leah Grace", "Liana Rose",
+  "Louise Anne", "Mae Patricia", "Mara Isabel", "Maria Sophia", "Mikaela Joy", "Nicole Anne",
+  "Patricia Mae", "Rachelle Joy", "Samantha Rose", "Sophia Grace", "Trisha Mae", "Ysabel Anne",
+  "Abigail Rose", "Althea Mae", "Amara Joy", "Andrea Grace", "Angela Marie", "Bianca Rose",
+  "Celine Mae", "Chloe Anne", "Daniela Grace", "Janine Marie", "Kristine Mae", "Lovely Anne",
 ];
 
 const lastNames = [
-  "Abad", "Agustin", "Alcantara", "Alipio", "Aquino", "Bagsic", "Bastian", "Bay-an",
-  "Cabato", "Cacayorin", "Calsiyao", "Cariaga", "Castro", "Cayat", "Dacanay", "Dela Cruz",
-  "Dominguez", "Esteban", "Fianza", "Garcia", "Gayo", "Gonzales", "Ignacio", "Kitma",
-  "Labi", "Lacwasan", "Macli-ing", "Mendoza", "Ngalob", "Olsim", "Pacio", "Palao",
-  "Panes", "Paredes", "Pascual", "Quinto", "Ramos", "Reyes", "Rivera", "Sanchez",
-  "Santos", "Soriano", "Tacio", "Tagle", "Tamayo", "Torres", "Valdez", "Velasco",
-  "Villanueva", "Wakit", "Yamashita", "Zamora", "Balan", "Bugnay", "Carantes", "Dizon",
-  "Flores", "Luna", "Navarro", "Salvador",
+  "Abad", "Agustin", "Alcantara", "Alipio", "Aquino", "Bagano", "Bagsic", "Bastian",
+  "Bay-an", "Cabato", "Cacayorin", "Calsiyao", "Cariaga", "Carantes", "Castro", "Cayat",
+  "Dacanay", "Dela Cruz", "Dominguez", "Esteban", "Fianza", "Flores", "Garcia", "Gayo",
+  "Gonzales", "Ignacio", "Kitma", "Labi", "Lacwasan", "Macli-ing", "Mendoza", "Ngalob",
+  "Olsim", "Pacio", "Palao", "Panes", "Paredes", "Pascual", "Quinto", "Ramos",
+  "Reyes", "Rivera", "Salvador", "Sanchez", "Santos", "Soriano", "Tacio", "Tagle",
+  "Tamayo", "Torres", "Valdez", "Velasco", "Villanueva", "Wakit", "Zamora", "Balan",
+  "Bugnay", "Dizon", "Luna", "Navarro", "Palispis", "Piraso", "Pudayan", "Tacloy",
 ];
 
 const barangays = [
-  "Balili", "Betag", "Pico", "Poblacion", "Lubas", "Wangal", "Beckel", "Alapang",
-  "Bahong", "Bineng", "Shilan", "Tawang", "Ambiong", "Beckel", "Camp Dangwa",
+  "Alapang", "Alno", "Ambiong", "Bahong", "Balili", "Beckel", "Betag", "Bineng",
+  "Cruz", "Lubas", "Pico", "Poblacion", "Puguis", "Shilan", "Tawang", "Wangal",
 ];
 
 function gradeNumber(gradeLevel: GradeLevel) {
@@ -210,13 +216,20 @@ export function createSeedLearners(): Learner[] {
     const sex = Math.floor(index / SECTIONS.length) % 2 === 0 ? "Male" : "Female";
     const firstNames = sex === "Male" ? maleFirstNames : femaleFirstNames;
     const firstName = firstNames[index % firstNames.length];
-    const lastName = lastNames[Math.floor(index / firstNames.length) % lastNames.length];
-    const middleName = lastNames[(index * 7 + 13) % lastNames.length];
+    const householdIndex = Math.floor(index / 2);
+    const lastName = lastNames[householdIndex % lastNames.length];
+    const householdCycle = Math.floor(householdIndex / lastNames.length);
+    const middleName = lastNames[(householdIndex * 7 + householdCycle * 11 + 13) % lastNames.length];
+    const guardianFirstNames = householdIndex % 2 === 0 ? femaleFirstNames : maleFirstNames;
+    const guardianFirstName = guardianFirstNames[(householdIndex * 5) % guardianFirstNames.length];
     const grade = gradeNumber(section.gradeLevel);
-    const age = grade === 0 ? 5 : grade + 5;
+    const age = (grade === 0 ? 5 : grade + 5) + (index % 11 === 0 ? 1 : 0);
     const birthYear = 2026 - age;
     const birthMonth = String((index % 12) + 1).padStart(2, "0");
     const birthDay = String((index % 27) + 1).padStart(2, "0");
+    const barangay = barangays[householdIndex % barangays.length];
+    const houseNumber = 1 + ((householdIndex * 11) % 180);
+    const purok = 1 + (householdIndex % 7);
     const movement =
       index % 173 === 0
         ? "Transferred in"
@@ -233,9 +246,9 @@ export function createSeedLearners(): Learner[] {
       lastName,
       sex,
       birthDate: `${birthYear}-${birthMonth}-${birthDay}`,
-      address: `${12 + (index % 88)} ${barangays[index % barangays.length]} Road, La Trinidad, Benguet`,
-      guardianName: `${femaleFirstNames[(index * 3) % femaleFirstNames.length]} ${lastName}`,
-      guardianContact: phone(index),
+      address: `House ${houseNumber}, Purok ${purok}, Barangay ${barangay}, La Trinidad, Benguet`,
+      guardianName: `${guardianFirstName} ${middleName} ${lastName}`,
+      guardianContact: phone(householdIndex),
       gradeLevel: section.gradeLevel,
       sectionId: section.id,
       enrollmentStatus: movement,
@@ -427,7 +440,7 @@ export const SEED_AUDIT_LOG: AuditEntry[] = [
   {
     id: "audit-003",
     timestamp: "2026-07-09T15:20:00.000Z",
-    userName: "Maria L. Santos",
+    userName: "Diane M. Santos",
     action: "Generated school form",
     module: "Reports",
     detail: "SF4 monthly consolidation - June 2026",

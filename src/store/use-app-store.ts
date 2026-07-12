@@ -424,7 +424,7 @@ export const useAppStore = create<AppState>()(
       resetPrototype: () => set(freshState()),
     }),
     {
-      name: "edunexus-prototype-v1",
+      name: "edunexus-prototype-v2",
       merge: (persistedState, currentState) => ({
         ...currentState,
         ...(persistedState as Partial<AppState>),
