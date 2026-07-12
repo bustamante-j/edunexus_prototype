@@ -4,8 +4,9 @@ EduNexus is a Vercel-ready React prototype for Balili Elementary School. It demo
 
 ## Included Workflows
 
+- Responsive public school website with About, Announcements, Events, Programs, and Contact pages
 - Role-aware access for the School Head, Administrative Officer, and Class Adviser
-- A fictional Philippine-context dataset with 897 learners across 30 sections
+- A fictional Philippine-context dataset with 1,077 learners across 36 sections
 - Central learner repository with search, filters, registration, CSV import, and individual profiles
 - AM/PM daily attendance and monthly summaries with 20% absence warnings
 - Three-term class records with automatic WW, PT, EX, initial-grade, and term-grade computation
@@ -26,7 +27,7 @@ All accounts use the password `12345678`.
 | Administrative Officer | `diane@edu.ph` |
 | Class Adviser | `joshua@edu.ph` |
 
-The login page can fill any of these accounts automatically.
+The public website opens at `/`. The login page at `/login` can fill any of these accounts automatically, and authenticated records workflows are grouped under `/portal`.
 
 ## Technology
 
@@ -69,7 +70,7 @@ Import this directory as a Vercel project or deploy it with the Vercel CLI.
 - Output directory: `dist`
 - Environment variables: none required for the prototype
 
-The included `vercel.json` rewrites application routes to `index.html`, allowing direct links such as `/learners` and `/forms` to work after deployment.
+The included `vercel.json` rewrites application routes to `index.html`, allowing direct links such as `/about`, `/portal/learners`, and `/portal/forms` to work after deployment.
 
 ## Assessment Policy Implemented
 

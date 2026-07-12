@@ -34,7 +34,7 @@ export function LearnerProfilePage() {
   const attendance = useMemo(() => learner ? learnerAttendanceSummary(learner.id, attendanceDays) : null, [learner, attendanceDays]);
 
   if (!learner || !academic || !attendance) {
-    return <div className="page-stack"><Button variant="secondary" onClick={() => navigate("/learners")}><ArrowLeft size={17} /> Back to learners</Button><Panel><p>This learner record is not available within your assigned access.</p></Panel></div>;
+    return <div className="page-stack"><Button variant="secondary" onClick={() => navigate("/portal/learners")}><ArrowLeft size={17} /> Back to learners</Button><Panel><p>This learner record is not available within your assigned access.</p></Panel></div>;
   }
 
   const recentAttendance = attendanceDays
@@ -43,14 +43,14 @@ export function LearnerProfilePage() {
     .slice(0, 10);
   return (
     <div className="page-stack">
-      <Button className="back-button" variant="quiet" size="sm" onClick={() => navigate("/learners")}><ArrowLeft size={17} /> Learner records</Button>
+      <Button className="back-button" variant="quiet" size="sm" onClick={() => navigate("/portal/learners")}><ArrowLeft size={17} /> Learner records</Button>
       <PageHeader
         eyebrow={`LRN ${learner.lrn}`}
         title={`${learner.firstName} ${learner.middleName[0]}. ${learner.lastName}`}
         actions={
           <>
-            <Button variant="secondary" onClick={() => navigate(`/forms?form=sf9&learner=${learner.id}`)}><FileText size={17} /> SF9</Button>
-            <Button variant="secondary" onClick={() => navigate(`/forms?form=sf10&learner=${learner.id}`)}><FileText size={17} /> SF10</Button>
+            <Button variant="secondary" onClick={() => navigate(`/portal/forms?form=sf9&learner=${learner.id}`)}><FileText size={17} /> SF9</Button>
+            <Button variant="secondary" onClick={() => navigate(`/portal/forms?form=sf10&learner=${learner.id}`)}><FileText size={17} /> SF10</Button>
             {user.role !== "teacher" ? <Button onClick={() => { setEditAddress(learner.address); setEditGuardian(learner.guardianName); setEditContact(learner.guardianContact); setEditSectionId(learner.sectionId); setEditOpen(true); }}><Edit3 size={17} /> Edit record</Button> : null}
           </>
         }

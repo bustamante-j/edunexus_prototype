@@ -9,9 +9,8 @@ export function NotFoundPage() {
       <EmptyState
         title="Page not found"
         detail="The requested EduNexus workspace does not exist."
-        action={<Button onClick={() => navigate("/")}><ArrowLeft size={17} /> Return to overview</Button>}
+        action={<Button onClick={() => navigate("/portal")}><ArrowLeft size={17} /> Return to overview</Button>}
       />
     </div>
   );
 }
-

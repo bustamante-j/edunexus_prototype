@@ -89,8 +89,8 @@ export function AttendancePage() {
         title="Attendance"
         actions={
           <>
-            <Button variant="secondary" onClick={() => navigate(`/forms?form=sf2&section=${sectionId}&month=${monthPrefix}`)}><FileText size={17} /> Generate SF2</Button>
-            {user.role !== "teacher" ? <Button variant="secondary" onClick={() => navigate(`/forms?form=sf4&month=${monthPrefix}`)}><FileText size={17} /> Generate SF4</Button> : null}
+            <Button variant="secondary" onClick={() => navigate(`/portal/forms?form=sf2&section=${sectionId}&month=${monthPrefix}`)}><FileText size={17} /> Generate SF2</Button>
+            {user.role !== "teacher" ? <Button variant="secondary" onClick={() => navigate(`/portal/forms?form=sf4&month=${monthPrefix}`)}><FileText size={17} /> Generate SF4</Button> : null}
             <Button onClick={saveSheet}><Save size={17} /> Save attendance</Button>
           </>
         }

@@ -107,7 +107,7 @@ export function LearnersPage() {
     const learner = addLearner(values);
     toast.success("Learner record created", { description: `${values.firstName} ${values.lastName} was added to the active roster.` });
     closeAdd();
-    navigate(`/learners/${learner.id}`);
+    navigate(`/portal/learners/${learner.id}`);
   }
 
   function exportRoster() {
@@ -220,14 +220,14 @@ export function LearnersPage() {
               {paginated.map((learner) => {
                 const section = sections.find((candidate) => candidate.id === learner.sectionId);
                 return (
-                  <tr key={learner.id} onDoubleClick={() => navigate(`/learners/${learner.id}`)}>
+                  <tr key={learner.id} onDoubleClick={() => navigate(`/portal/learners/${learner.id}`)}>
                     <td><div className="person-cell"><span>{initials(`${learner.firstName} ${learner.lastName}`)}</span><div><strong>{learnerName(learner)}</strong><small>{formatDate(learner.birthDate)} - {learner.address.split(",")[0]}</small></div></div></td>
                     <td className="mono-cell">{learner.lrn}</td>
                     <td>{learner.sex}</td>
                     <td><strong>{section?.gradeLevel}</strong><small>{section?.name}</small></td>
                     <td><strong>{learner.guardianName}</strong><small>{learner.guardianContact}</small></td>
                     <td><Badge tone={learner.enrollmentStatus === "Enrolled" ? "success" : "info"} dot>{learner.enrollmentStatus}</Badge></td>
-                    <td><Button size="sm" variant="quiet" onClick={() => navigate(`/learners/${learner.id}`)}>View record</Button></td>
+                    <td><Button size="sm" variant="quiet" onClick={() => navigate(`/portal/learners/${learner.id}`)}>View record</Button></td>
                   </tr>
                 );
               })}
@@ -244,7 +244,7 @@ export function LearnersPage() {
                 <h3>{learner.firstName} {learner.lastName}</h3>
                 <p>LRN {learner.lrn}</p>
                 <dl><div><dt>Class</dt><dd>{sectionLabel(section)}</dd></div><div><dt>Guardian</dt><dd>{learner.guardianName}</dd></div></dl>
-                <Button variant="secondary" onClick={() => navigate(`/learners/${learner.id}`)}>Open record</Button>
+                <Button variant="secondary" onClick={() => navigate(`/portal/learners/${learner.id}`)}>Open record</Button>
               </article>
             );
           })}

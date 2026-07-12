@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import { AppShell } from "./components/layout/app-shell";
+import { PublicShell } from "./components/public/public-shell";
 import { useAppStore } from "./store/use-app-store";
 import type { Role } from "./types/domain";
 const ActivityPage = lazy(() => import("./pages/activity-page").then((module) => ({ default: module.ActivityPage })));
@@ -16,6 +17,12 @@ const LoginPage = lazy(() => import("./pages/login-page").then((module) => ({ de
 const NotFoundPage = lazy(() => import("./pages/not-found-page").then((module) => ({ default: module.NotFoundPage })));
 const PromotionPage = lazy(() => import("./pages/promotion-page").then((module) => ({ default: module.PromotionPage })));
 const SetupPage = lazy(() => import("./pages/setup-page").then((module) => ({ default: module.SetupPage })));
+const PublicAboutPage = lazy(() => import("./pages/public/public-about-page").then((module) => ({ default: module.PublicAboutPage })));
+const PublicAnnouncementsPage = lazy(() => import("./pages/public/public-announcements-page").then((module) => ({ default: module.PublicAnnouncementsPage })));
+const PublicContactPage = lazy(() => import("./pages/public/public-contact-page").then((module) => ({ default: module.PublicContactPage })));
+const PublicEventsPage = lazy(() => import("./pages/public/public-events-page").then((module) => ({ default: module.PublicEventsPage })));
+const PublicHomePage = lazy(() => import("./pages/public/public-home-page").then((module) => ({ default: module.PublicHomePage })));
+const PublicProgramsPage = lazy(() => import("./pages/public/public-programs-page").then((module) => ({ default: module.PublicProgramsPage })));
 
 function RequireAuth() {
   const currentUserId = useAppStore((state) => state.currentUserId);
@@ -28,7 +35,7 @@ function RequireRole({ roles, children }: { roles: Role[]; children: ReactNode }
   const currentUserId = useAppStore((state) => state.currentUserId);
   const users = useAppStore((state) => state.users);
   const user = users.find((candidate) => candidate.id === currentUserId);
-  if (!user || !roles.includes(user.role)) return <Navigate to="/" replace />;
+  if (!user || !roles.includes(user.role)) return <Navigate to="/portal" replace />;
   return children;
 }
 
@@ -47,20 +54,29 @@ function App() {
   return (
     <Suspense fallback={<div className="route-loader" role="status" aria-label="Loading page"><span /></div>}>
       <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route element={<RequireAuth />}>
-        <Route index element={<DashboardPage />} />
-        <Route path="learners" element={<LearnersPage />} />
-        <Route path="learners/:id" element={<LearnerProfilePage />} />
-        <Route path="attendance" element={<AttendancePage />} />
-        <Route path="grades" element={<RequireRole roles={["school_head", "teacher"]}><GradesPage /></RequireRole>} />
-        <Route path="promotion" element={<RequireRole roles={["school_head", "admin_officer"]}><PromotionPage /></RequireRole>} />
-        <Route path="forms" element={<FormsPage />} />
-        <Route path="analytics" element={<AnalyticsPage />} />
-        <Route path="setup" element={<RequireRole roles={["school_head"]}><SetupPage /></RequireRole>} />
-        <Route path="activity" element={<RequireRole roles={["school_head", "admin_officer"]}><ActivityPage /></RequireRole>} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
+        <Route element={<PublicShell />}>
+          <Route index element={<PublicHomePage />} />
+          <Route path="about" element={<PublicAboutPage />} />
+          <Route path="announcements" element={<PublicAnnouncementsPage />} />
+          <Route path="events" element={<PublicEventsPage />} />
+          <Route path="programs" element={<PublicProgramsPage />} />
+          <Route path="contact" element={<PublicContactPage />} />
+        </Route>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/portal" element={<RequireAuth />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="learners" element={<LearnersPage />} />
+          <Route path="learners/:id" element={<LearnerProfilePage />} />
+          <Route path="attendance" element={<AttendancePage />} />
+          <Route path="grades" element={<RequireRole roles={["school_head", "teacher"]}><GradesPage /></RequireRole>} />
+          <Route path="promotion" element={<RequireRole roles={["school_head", "admin_officer"]}><PromotionPage /></RequireRole>} />
+          <Route path="forms" element={<FormsPage />} />
+          <Route path="analytics" element={<AnalyticsPage />} />
+          <Route path="setup" element={<RequireRole roles={["school_head"]}><SetupPage /></RequireRole>} />
+          <Route path="activity" element={<RequireRole roles={["school_head", "admin_officer"]}><ActivityPage /></RequireRole>} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
   );

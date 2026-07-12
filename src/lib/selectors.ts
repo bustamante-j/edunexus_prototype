@@ -162,7 +162,7 @@ export function buildNotifications(
       title: `${lowGrades.length} academic records need review`,
       detail: "One or more final learning-area grades are below 75.",
       tone: "danger",
-      href: "/grades",
+      href: "/portal/grades",
     });
   }
   if (attendanceRisk.length) {
@@ -171,7 +171,7 @@ export function buildNotifications(
       title: `${attendanceRisk.length} attendance warning${attendanceRisk.length === 1 ? "" : "s"}`,
       detail: "Recorded absences exceed the 20% monitoring threshold.",
       tone: "warning",
-      href: "/attendance",
+      href: "/portal/attendance",
     });
   }
   if (user.role !== "teacher" && pendingPromotions.length) {
@@ -180,9 +180,8 @@ export function buildNotifications(
       title: "Promotion review is open",
       detail: `${pendingPromotions.length} learner records remain pending.`,
       tone: "info",
-      href: "/promotion",
+      href: "/portal/promotion",
     });
   }
   return items;
 }
-

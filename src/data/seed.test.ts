@@ -15,9 +15,11 @@ const laTrinidadBarangays = [
 ];
 
 describe("presentation dataset", () => {
-  it("matches the revised paper's school profile", () => {
-    expect(SEED_LEARNERS).toHaveLength(897);
-    expect(SECTIONS).toHaveLength(30);
+  it("matches the expanded prototype school profile", () => {
+    expect(SEED_LEARNERS).toHaveLength(1077);
+    expect(SECTIONS).toHaveLength(36);
+    expect(SCHOOL_PROFILE.teachingPersonnel).toBe(SECTIONS.length);
+    expect(new Set(SECTIONS.map((section) => section.adviserName)).size).toBe(SECTIONS.length);
   });
 
   it("uses unique learner reference numbers and valid class assignments", () => {
@@ -68,7 +70,7 @@ describe("presentation dataset", () => {
       }
     });
 
-    expect(households.size).toBe(449);
+    expect(households.size).toBe(539);
     SECTIONS.forEach((section) => {
       const roster = SEED_LEARNERS.filter((learner) => learner.sectionId === section.id);
       const maleCount = roster.filter((learner) => learner.sex === "Male").length;

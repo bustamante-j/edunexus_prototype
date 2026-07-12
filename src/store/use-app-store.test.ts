@@ -27,7 +27,7 @@ describe("prototype store workflows", () => {
   });
 
   it("refreshes fixed credentials when browser data is restored", async () => {
-    localStorage.setItem("edunexus-prototype-v2", JSON.stringify({
+    localStorage.setItem("edunexus-prototype-v3", JSON.stringify({
       state: {
         users: useAppStore.getState().users.map((user) => ({ ...user, email: `old-${user.id}@example.test` })),
       },

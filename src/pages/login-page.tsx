@@ -15,6 +15,9 @@ const roleNames = {
 export function LoginPage() {
   const navigate = useNavigate();
   const users = useAppStore((state) => state.users);
+  const school = useAppStore((state) => state.school);
+  const sections = useAppStore((state) => state.sections);
+  const learners = useAppStore((state) => state.learners);
   const currentUserId = useAppStore((state) => state.currentUserId);
   const login = useAppStore((state) => state.login);
   const [email, setEmail] = useState(users[0].email);
@@ -24,7 +27,7 @@ export function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (currentUserId) navigate("/", { replace: true });
+    if (currentUserId) navigate("/portal", { replace: true });
   }, [currentUserId, navigate]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -34,7 +37,7 @@ export function LoginPage() {
     await new Promise((resolve) => window.setTimeout(resolve, 450));
     const success = login(email, password);
     setLoading(false);
-    if (success) navigate("/", { replace: true });
+    if (success) navigate("/portal", { replace: true });
     else setError("The email or password does not match an authorized account.");
   }
 
@@ -47,9 +50,9 @@ export function LoginPage() {
           <h1>One learner record.<br />Every school form.</h1>
           <p>Attendance, academic records, promotion, and required school outputs in one connected workspace.</p>
           <div className="login-visual__facts">
-            <span><strong>897</strong> enrolled learners</span>
-            <span><strong>30</strong> class sections</span>
-            <span><strong>SY 2026-2027</strong> active records</span>
+            <span><strong>{learners.length.toLocaleString("en-PH")}</strong> enrolled learners</span>
+            <span><strong>{sections.length}</strong> class sections</span>
+            <span><strong>SY {school.activeSchoolYear}</strong> active records</span>
           </div>
         </div>
       </section>

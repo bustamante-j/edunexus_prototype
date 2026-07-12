@@ -27,8 +27,8 @@ export const SCHOOL_PROFILE: SchoolProfile = {
   activeSchoolYear: "2026-2027",
   schoolYearStart: "2026-06-15",
   schoolYearEnd: "2027-03-31",
-  officialEnrollment: 897,
-  teachingPersonnel: 30,
+  officialEnrollment: 1077,
+  teachingPersonnel: 36,
   administrativePersonnel: 2,
 };
 
@@ -89,6 +89,12 @@ const adviserNames = [
   "Roberto M. Pacio",
   "Sheryl D. Palao",
   "Vincent C. Tacio",
+  "Jocelyn M. Alawas",
+  "Benjamin R. Balangcod",
+  "Ma. Teresa C. Bulao",
+  "Dennis A. Camdas",
+  "Irene F. Chulya",
+  "Mark Anthony D. Fongwan",
 ];
 
 const gradeSections: Array<{ gradeLevel: GradeLevel; names: string[] }> = [
@@ -96,12 +102,12 @@ const gradeSections: Array<{ gradeLevel: GradeLevel; names: string[] }> = [
     gradeLevel: "Kindergarten",
     names: ["Sampaguita", "Rosal", "Gumamela", "Ilang-Ilang", "Waling-Waling", "Camia"],
   },
-  { gradeLevel: "Grade 1", names: ["Narra", "Molave", "Acacia", "Yakal"] },
-  { gradeLevel: "Grade 2", names: ["Narra", "Molave", "Acacia", "Yakal"] },
-  { gradeLevel: "Grade 3", names: ["Narra", "Molave", "Acacia", "Yakal"] },
-  { gradeLevel: "Grade 4", names: ["Narra", "Molave", "Acacia", "Yakal"] },
-  { gradeLevel: "Grade 5", names: ["Narra", "Molave", "Acacia", "Yakal"] },
-  { gradeLevel: "Grade 6", names: ["Narra", "Molave", "Acacia", "Yakal"] },
+  { gradeLevel: "Grade 1", names: ["Narra", "Molave", "Acacia", "Yakal", "Ipil"] },
+  { gradeLevel: "Grade 2", names: ["Narra", "Molave", "Acacia", "Yakal", "Ipil"] },
+  { gradeLevel: "Grade 3", names: ["Narra", "Molave", "Acacia", "Yakal", "Ipil"] },
+  { gradeLevel: "Grade 4", names: ["Narra", "Molave", "Acacia", "Yakal", "Ipil"] },
+  { gradeLevel: "Grade 5", names: ["Narra", "Molave", "Acacia", "Yakal", "Ipil"] },
+  { gradeLevel: "Grade 6", names: ["Narra", "Molave", "Acacia", "Yakal", "Ipil"] },
 ];
 
 function slug(value: string) {
@@ -122,7 +128,7 @@ export const SECTIONS: Section[] = gradeSections.flatMap((group) =>
         id === "grade-4-narra"
           ? "Joshua B. Garcia"
           : index === 1
-            ? "Jerome P. Fianza"
+            ? "Michael D. Ignacio"
             : adviserNames[index],
       room: group.gradeLevel === "Kindergarten" ? `K-${index + 1}` : `Room ${index + 1}`,
       schoolYear: SCHOOL_PROFILE.activeSchoolYear,

@@ -104,9 +104,9 @@ export function DashboardPage() {
         actions={
           <>
             {user.role !== "teacher" ? (
-              <Button variant="secondary" onClick={() => navigate("/learners?new=1")}><UserPlus size={17} /> Add learner</Button>
+              <Button variant="secondary" onClick={() => navigate("/portal/learners?new=1")}><UserPlus size={17} /> Add learner</Button>
             ) : null}
-            <Button onClick={() => navigate("/attendance")}><CalendarDays size={17} /> Record attendance</Button>
+            <Button onClick={() => navigate("/portal/attendance")}><CalendarDays size={17} /> Record attendance</Button>
           </>
         }
       />
@@ -178,7 +178,7 @@ export function DashboardPage() {
       <Panel
         title="Records requiring attention"
         meta="Prioritized by academic and attendance indicators"
-        action={<Button size="sm" variant="quiet" onClick={() => navigate("/analytics")}>View analytics <ArrowRight size={16} /></Button>}
+        action={<Button size="sm" variant="quiet" onClick={() => navigate("/portal/analytics")}>View analytics <ArrowRight size={16} /></Button>}
         flush
       >
         <TableFrame className="table-frame--borderless">
@@ -195,7 +195,7 @@ export function DashboardPage() {
                     <td><div className="table-progress"><strong>{item.academic.generalAverage}</strong><Progress value={item.academic.generalAverage} tone={item.academic.generalAverage < 75 ? "danger" : "warning"} /></div></td>
                     <td>{item.attendance.rate.toFixed(1)}%</td>
                     <td><Badge tone={priority === "Critical" ? "danger" : "warning"}>{priority}</Badge></td>
-                    <td><Button size="sm" variant="quiet" onClick={() => navigate(`/learners/${item.learner.id}`)}>Review</Button></td>
+                    <td><Button size="sm" variant="quiet" onClick={() => navigate(`/portal/learners/${item.learner.id}`)}>Review</Button></td>
                   </tr>
                 );
               })}
@@ -218,10 +218,10 @@ export function DashboardPage() {
         </Panel>
         <Panel title="Quick outputs" meta="Ready-to-generate records">
           <div className="quick-output-list">
-            <button onClick={() => navigate("/forms?form=sf2")}><FileOutput size={18} /><span><strong>SF2</strong><small>Daily attendance report</small></span><ArrowRight size={16} /></button>
-            <button onClick={() => navigate("/forms?form=sf4")}><FileOutput size={18} /><span><strong>SF4</strong><small>Monthly attendance consolidation</small></span><ArrowRight size={16} /></button>
-            <button onClick={() => navigate("/forms?form=sf9")}><FileOutput size={18} /><span><strong>SF9</strong><small>Learner performance report</small></span><ArrowRight size={16} /></button>
-            <button onClick={() => navigate("/forms?form=sf10")}><FileOutput size={18} /><span><strong>SF10</strong><small>Permanent academic record</small></span><ArrowRight size={16} /></button>
+            <button onClick={() => navigate("/portal/forms?form=sf2")}><FileOutput size={18} /><span><strong>SF2</strong><small>Daily attendance report</small></span><ArrowRight size={16} /></button>
+            <button onClick={() => navigate("/portal/forms?form=sf4")}><FileOutput size={18} /><span><strong>SF4</strong><small>Monthly attendance consolidation</small></span><ArrowRight size={16} /></button>
+            <button onClick={() => navigate("/portal/forms?form=sf9")}><FileOutput size={18} /><span><strong>SF9</strong><small>Learner performance report</small></span><ArrowRight size={16} /></button>
+            <button onClick={() => navigate("/portal/forms?form=sf10")}><FileOutput size={18} /><span><strong>SF10</strong><small>Permanent academic record</small></span><ArrowRight size={16} /></button>
           </div>
         </Panel>
       </div>

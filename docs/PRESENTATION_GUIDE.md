@@ -6,13 +6,14 @@ EduNexus centralizes learner attendance and academic records so that teachers en
 
 ## Suggested Demonstration Flow
 
-1. Sign in as the Class Adviser and open the Grade 4 Narra dashboard.
-2. Open Learners, search for one learner, and show the connected profile, attendance, grades, and enrollment history.
-3. Open Attendance, change an AM or PM status, save the sheet, and generate SF2.
-4. Open Class Records, change one score, and show the automatic WW, PT, EX, initial-grade, transmutation, and warning result.
-5. Generate the learner's SF9 and SF10 from the School Forms section.
-6. Switch to the Administrative Officer and demonstrate SF4 consolidation.
-7. Switch to the School Head, review Analytics and Promotion, then show the activity log and school settings.
+1. Begin on the public school website and briefly show the school profile, announcements, events, programs, and contact information.
+2. Open the Staff Portal, sign in as the Class Adviser, and show the Grade 4 Narra dashboard.
+3. Open Learners, search for one learner, and show the connected profile, attendance, grades, and enrollment history.
+4. Open Attendance, change an AM or PM status, save the sheet, and generate SF2.
+5. Open Class Records, change one score, and show the automatic WW, PT, EX, initial-grade, transmutation, and warning result.
+6. Generate the learner's SF9 and SF10 from the School Forms section.
+7. Switch to the Administrative Officer and demonstrate SF4 consolidation.
+8. Switch to the School Head, review Analytics and Promotion, then show the activity log and school settings.
 
 ## Main Automation Point
 
@@ -28,4 +29,3 @@ The prototype demonstrates role separation and audit visibility using fictional 
 - It does not submit directly to LIS or EBEIS.
 - Generated forms must be checked by authorized school personnel before official use.
 - Exact school-form templates should be validated against the latest forms issued to the school.
-

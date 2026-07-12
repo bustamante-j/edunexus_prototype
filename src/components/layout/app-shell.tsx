@@ -12,6 +12,7 @@ import {
   ClipboardCheck,
   FileText,
   GraduationCap,
+  Globe2,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -33,44 +34,44 @@ const navGroups = [
   {
     label: "Workspace",
     items: [
-      { to: "/", label: "Overview", icon: LayoutDashboard, roles: ["school_head", "admin_officer", "teacher"] },
+      { to: "/portal", label: "Overview", icon: LayoutDashboard, roles: ["school_head", "admin_officer", "teacher"] },
     ],
   },
   {
     label: "School Records",
     items: [
-      { to: "/learners", label: "Learners", icon: UsersRound, roles: ["school_head", "admin_officer", "teacher"] },
-      { to: "/attendance", label: "Attendance", icon: CalendarCheck2, roles: ["school_head", "admin_officer", "teacher"] },
-      { to: "/grades", label: "Class Records", icon: BookOpenCheck, roles: ["school_head", "teacher"] },
-      { to: "/promotion", label: "Promotion", icon: GraduationCap, roles: ["school_head", "admin_officer"] },
+      { to: "/portal/learners", label: "Learners", icon: UsersRound, roles: ["school_head", "admin_officer", "teacher"] },
+      { to: "/portal/attendance", label: "Attendance", icon: CalendarCheck2, roles: ["school_head", "admin_officer", "teacher"] },
+      { to: "/portal/grades", label: "Class Records", icon: BookOpenCheck, roles: ["school_head", "teacher"] },
+      { to: "/portal/promotion", label: "Promotion", icon: GraduationCap, roles: ["school_head", "admin_officer"] },
     ],
   },
   {
     label: "Outputs",
     items: [
-      { to: "/forms", label: "School Forms", icon: FileText, roles: ["school_head", "admin_officer", "teacher"] },
-      { to: "/analytics", label: "Analytics", icon: BarChart3, roles: ["school_head", "admin_officer", "teacher"] },
+      { to: "/portal/forms", label: "School Forms", icon: FileText, roles: ["school_head", "admin_officer", "teacher"] },
+      { to: "/portal/analytics", label: "Analytics", icon: BarChart3, roles: ["school_head", "admin_officer", "teacher"] },
     ],
   },
   {
     label: "Administration",
     items: [
-      { to: "/setup", label: "School Setup", icon: Settings, roles: ["school_head"] },
-      { to: "/activity", label: "Activity Log", icon: Activity, roles: ["school_head", "admin_officer"] },
+      { to: "/portal/setup", label: "School Setup", icon: Settings, roles: ["school_head"] },
+      { to: "/portal/activity", label: "Activity Log", icon: Activity, roles: ["school_head", "admin_officer"] },
     ],
   },
 ];
 
 const routeTitles: Record<string, string> = {
-  "/": "Overview",
-  "/learners": "Learner records",
-  "/attendance": "Attendance",
-  "/grades": "Class records",
-  "/promotion": "Promotion",
-  "/forms": "School forms",
-  "/analytics": "Analytics",
-  "/setup": "School setup",
-  "/activity": "Activity log",
+  "/portal": "Overview",
+  "/portal/learners": "Learner records",
+  "/portal/attendance": "Attendance",
+  "/portal/grades": "Class records",
+  "/portal/promotion": "Promotion",
+  "/portal/forms": "School forms",
+  "/portal/analytics": "Analytics",
+  "/portal/setup": "School setup",
+  "/portal/activity": "Activity log",
 };
 
 const roleLabels: Record<Role, string> = {
@@ -100,7 +101,7 @@ export function AppShell() {
     () => buildNotifications(user, learners, subjects, gradeSheets, attendanceDays),
     [user, learners, subjects, gradeSheets, attendanceDays],
   );
-  const title = location.pathname.startsWith("/learners/")
+  const title = location.pathname.startsWith("/portal/learners/")
     ? "Learner profile"
     : routeTitles[location.pathname] ?? "EduNexus";
 
@@ -139,7 +140,7 @@ export function AppShell() {
                 return (
                   <NavLink
                     className={({ isActive }) => cn("nav-link", isActive && "is-active")}
-                    end={item.to === "/"}
+                    end={item.to === "/portal"}
                     key={item.to}
                     onClick={() => setMobileOpen(false)}
                     title={collapsed ? item.label : undefined}
@@ -254,7 +255,7 @@ export function AppShell() {
                       onClick={() => {
                         switchUser(candidate.id);
                         setUserMenuOpen(false);
-                        navigate("/");
+                        navigate("/portal");
                       }}
                     >
                       <UserRoundCog size={17} />
@@ -262,6 +263,13 @@ export function AppShell() {
                     </button>
                   ))}
                   <div className="popover-divider" />
+                  <Button
+                    className="user-popover__logout"
+                    variant="quiet"
+                    onClick={() => navigate("/")}
+                  >
+                    <Globe2 size={17} /> School website
+                  </Button>
                   <Button
                     className="user-popover__logout"
                     variant="quiet"
