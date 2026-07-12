@@ -1,3 +1,4 @@
+import { EventCalendar } from "../../components/public/event-calendar";
 import { PublicHero } from "../../components/public/public-hero";
 import { PUBLIC_EVENTS } from "../../data/public-seed";
 
@@ -31,10 +32,19 @@ export function PublicEventsPage() {
         image="/assets/section-events.webp"
       />
 
+      <section className="public-section public-events-calendar-page">
+        <div className="public-container">
+          <div className="public-section-heading">
+            <div><p className="public-eyebrow">Interactive calendar</p><h2>Select a date to view details.</h2></div>
+          </div>
+          <EventCalendar events={PUBLIC_EVENTS} />
+        </div>
+      </section>
+
       <section className="public-section public-events-page">
         <div className="public-container public-events-page__grid">
           <div>
-            <p className="public-eyebrow">Dates to remember</p>
+            <p className="public-eyebrow">Complete schedule</p>
             <h2>Plan ahead for the active school term.</h2>
             <p className="public-section-lead">Schedules may be adjusted when necessary. Class advisers will communicate any section-specific changes directly to families.</p>
           </div>

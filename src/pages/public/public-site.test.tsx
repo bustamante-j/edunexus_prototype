@@ -1,10 +1,11 @@
 // @vitest-environment jsdom
 
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 
 import App from "../../App";
+import { EventCalendar } from "../../components/public/event-calendar";
 import { PUBLIC_ANNOUNCEMENTS, PUBLIC_EVENTS, PUBLIC_PROGRAMS } from "../../data/public-seed";
 import { useAppStore } from "../../store/use-app-store";
 
@@ -40,5 +41,16 @@ describe("public school website", () => {
     expect(eventTimes).toEqual([...eventTimes].sort((a, b) => a - b));
     expect(PUBLIC_PROGRAMS).toHaveLength(6);
     expect(PUBLIC_PROGRAMS.every((program) => program.image.startsWith("/assets/"))).toBe(true);
+  });
+
+  it("shows event details when calendar dates and months are selected", () => {
+    render(<EventCalendar events={PUBLIC_EVENTS} />);
+
+    expect(screen.getByRole("heading", { name: "Family Reading Orientation" })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: /July 30, 2026, 1 event/ }));
+    expect(screen.getByRole("heading", { name: "Nutrition Month Culminating Activity" })).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("button", { name: "Next month" }));
+    expect(screen.getByRole("heading", { name: "First Parent-Teacher Conference" })).toBeTruthy();
   });
 });

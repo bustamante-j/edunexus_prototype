@@ -4,7 +4,7 @@ EduNexus is a Vercel-ready React prototype for Balili Elementary School. It demo
 
 ## Included Workflows
 
-- Responsive public school website with About, Announcements, Events, Programs, and Contact pages
+- Responsive public school website with About, Announcements, interactive event calendars, Programs, and Contact pages
 - Role-aware access for the School Head, Administrative Officer, and Class Adviser
 - A fictional Philippine-context dataset with 1,077 learners across 36 sections
 - Central learner repository with search, filters, registration, CSV import, and individual profiles

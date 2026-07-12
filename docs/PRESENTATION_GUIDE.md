@@ -6,7 +6,7 @@ EduNexus centralizes learner attendance and academic records so that teachers en
 
 ## Suggested Demonstration Flow
 
-1. Begin on the public school website and briefly show the school profile, announcements, events, programs, and contact information.
+1. Begin on the public school website, select a marked calendar date to show its event details, then briefly show the school profile, announcements, programs, and contact information.
 2. Open the Staff Portal, sign in as the Class Adviser, and show the Grade 4 Narra dashboard.
 3. Open Learners, search for one learner, and show the connected profile, attendance, grades, and enrollment history.
 4. Open Attendance, change an AM or PM status, save the sheet, and generate SF2.

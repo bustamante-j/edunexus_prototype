@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import { EventCalendar } from "../../components/public/event-calendar";
 import { PUBLIC_ANNOUNCEMENTS, PUBLIC_EVENTS, PUBLIC_PROGRAMS } from "../../data/public-seed";
 import { attendanceEquivalent } from "../../lib/grade-engine";
 import { useAppStore } from "../../store/use-app-store";
@@ -11,14 +12,6 @@ function formatDate(value: string) {
     month: "long",
     day: "numeric",
     year: "numeric",
-    timeZone: "Asia/Manila",
-  }).format(new Date(value));
-}
-
-function formatEventDate(value: string) {
-  return new Intl.DateTimeFormat("en-PH", {
-    month: "short",
-    day: "2-digit",
     timeZone: "Asia/Manila",
   }).format(new Date(value));
 }
@@ -128,14 +121,7 @@ export function PublicHomePage() {
             <p>Upcoming school activities, family meetings, and academic schedules for the active term.</p>
             <Link className="public-button public-button--light" to="/events">View Full Calendar</Link>
           </div>
-          <div className="public-events-band__list">
-            {PUBLIC_EVENTS.slice(0, 3).map((event) => (
-              <article key={event.id}>
-                <time dateTime={event.startsAt}>{formatEventDate(event.startsAt)}</time>
-                <div><span>{event.category}</span><h3>{event.title}</h3><p>{event.location}</p></div>
-              </article>
-            ))}
-          </div>
+          <EventCalendar compact events={PUBLIC_EVENTS} />
         </div>
       </section>
 
