@@ -5,6 +5,7 @@
   .learner-record-banner { grid-template-columns: minmax(240px, 1fr) auto; }
   .learner-record-banner__contact { border-left: 0; padding-left: 0; }
   .learner-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .learner-display-panel__controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .data-management { align-items: flex-start; flex-wrap: wrap; }
   .data-management__stats { order: 3; width: 100%; }
   .data-management__stats span { flex: 1; }
@@ -53,6 +54,7 @@
   .workspace-toolbar, .context-bar { align-items: stretch; flex-direction: column; }
   .workspace-toolbar > .select, .workspace-toolbar > .search-field, .context-bar > .field, .context-bar__end, .context-bar__end .search-field { width: 100%; max-width: none; min-width: 0; }
   .workspace-toolbar .segmented, .context-bar__end { margin-left: 0; }
+  .learner-toolbar .display-settings-button { width: 100%; margin-left: 0; }
   .segmented { width: 100%; }
   .segmented__button { flex: 1; }
   .panel__header { align-items: flex-start; flex-direction: column; }
@@ -63,6 +65,17 @@
   .metric-strip__item > strong { font-size: 18px; white-space: normal; }
   .metric-strip__item > small { white-space: normal; }
   .learner-card-grid { grid-template-columns: 1fr; }
+  .learner-display-panel__controls { grid-template-columns: 1fr; }
+  .learner-minimal-list article { grid-template-columns: 30px minmax(0, 1fr) auto; gap: 8px; }
+  .learner-minimal-list__class { grid-column: 2 / -1; grid-row: 2; }
+  .learner-minimal-list article > .badge { grid-column: 2; grid-row: 3; justify-self: start; }
+  .learner-minimal-list article > .button { grid-column: 3; grid-row: 1; }
+  .analytics-action-strip { grid-template-columns: 1fr 1fr; }
+  .analytics-action-strip button:nth-child(2) { border-right: 0; }
+  .analytics-action-strip button:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+  .analytics-queue-actions { width: 100%; align-items: stretch; flex-direction: column; }
+  .analytics-queue-actions .select,
+  .analytics-queue-actions .search-field { width: 100%; max-width: none; }
   .learner-record-banner { grid-template-columns: 1fr; }
   .learner-record-banner > .badge { justify-self: start; }
   .learner-record-banner__contact { border-top: 1px solid rgba(255, 255, 255, 0.14); padding-top: 9px; }
@@ -107,6 +120,10 @@
   .data-management__stats span { border-right: 0; border-bottom: 1px solid var(--line); }
   .data-management__stats span:last-child { border-bottom: 0; }
   .presentation-access__heading { align-items: flex-start; flex-direction: column; }
+  .analytics-action-strip { grid-template-columns: 1fr; }
+  .analytics-action-strip button,
+  .analytics-action-strip button:nth-child(2) { border-right: 0; border-bottom: 1px solid var(--line); }
+  .analytics-action-strip button:last-child { border-bottom: 0; }
 }
 
 @media print {
@@ -120,4 +137,3 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
-

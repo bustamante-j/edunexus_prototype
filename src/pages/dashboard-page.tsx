@@ -106,7 +106,7 @@ export function DashboardPage() {
             {user.role !== "teacher" ? (
               <Button variant="secondary" onClick={() => navigate("/portal/learners?new=1")}><UserPlus size={17} /> Add learner</Button>
             ) : null}
-            <Button onClick={() => navigate("/portal/attendance")}><CalendarDays size={17} /> Record attendance</Button>
+            {user.role !== "admin_officer" ? <Button onClick={() => navigate("/portal/attendance")}><CalendarDays size={17} /> Record attendance</Button> : null}
           </>
         }
       />

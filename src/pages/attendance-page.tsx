@@ -45,15 +45,16 @@ export function AttendancePage() {
   const markAllPresent = useAppStore((state) => state.markAllPresent);
   const appendAudit = useAppStore((state) => state.appendAudit);
   const user = users.find((candidate) => candidate.id === currentUserId)!;
+  const canRecord = user.role !== "admin_officer";
   const scopedSections = visibleSections(user, sections);
   const [sectionId, setSectionId] = useState(scopedSections[0]?.id ?? "grade-4-narra");
   const [date, setDate] = useState("2026-07-10");
-  const [mode, setMode] = useState<"daily" | "monthly">("daily");
+  const [mode, setMode] = useState<"daily" | "monthly">(canRecord ? "daily" : "monthly");
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    ensureAttendanceDay(date, sectionId);
-  }, [date, sectionId, ensureAttendanceDay]);
+    if (canRecord) ensureAttendanceDay(date, sectionId);
+  }, [date, sectionId, ensureAttendanceDay, canRecord]);
 
   const section = sections.find((candidate) => candidate.id === sectionId);
   const sectionLearners = useMemo(
@@ -78,6 +79,7 @@ export function AttendancePage() {
     .sort((a, b) => a.date.localeCompare(b.date));
 
   function saveSheet() {
+    if (!canRecord) return;
     appendAudit({ userName: user.fullName, action: "Completed daily attendance", module: "Attendance", detail: `${sectionLabel(section)} - ${formatDate(date)}` });
     toast.success("Attendance saved", { description: `${sectionLabel(section)} for ${formatDate(date)} is ready for consolidation.` });
   }
@@ -85,13 +87,13 @@ export function AttendancePage() {
   return (
     <div className="page-stack">
       <PageHeader
-        eyebrow={user.role === "teacher" ? "Assigned class" : "School attendance workspace"}
-        title="Attendance"
+        eyebrow={user.role === "teacher" ? "Assigned class" : canRecord ? "School attendance workspace" : "School attendance consolidation"}
+        title={canRecord ? "Attendance" : "Attendance reports"}
         actions={
           <>
             <Button variant="secondary" onClick={() => navigate(`/portal/forms?form=sf2&section=${sectionId}&month=${monthPrefix}`)}><FileText size={17} /> Generate SF2</Button>
             {user.role !== "teacher" ? <Button variant="secondary" onClick={() => navigate(`/portal/forms?form=sf4&month=${monthPrefix}`)}><FileText size={17} /> Generate SF4</Button> : null}
-            <Button onClick={saveSheet}><Save size={17} /> Save attendance</Button>
+            {canRecord ? <Button onClick={saveSheet}><Save size={17} /> Save attendance</Button> : null}
           </>
         }
       />
@@ -101,7 +103,7 @@ export function AttendancePage() {
         <Field label="Attendance date">
           <div className="date-stepper"><Button variant="quiet" size="sm" onClick={() => setDate(shiftDate(date, -1))}><ChevronLeft size={17} /></Button><Input type="date" value={date} onChange={(event) => setDate(event.target.value)} /><Button variant="quiet" size="sm" onClick={() => setDate(shiftDate(date, 1))}><ChevronRight size={17} /></Button></div>
         </Field>
-        <div className="context-bar__end"><Segmented value={mode} onChange={setMode} label="Attendance view" options={[{ value: "daily", label: "Daily sheet" }, { value: "monthly", label: "Monthly summary" }]} /></div>
+        <div className="context-bar__end"><Segmented value={mode} onChange={setMode} label="Attendance view" options={[{ value: "daily", label: canRecord ? "Daily sheet" : "Daily register" }, { value: "monthly", label: "Monthly summary" }]} /></div>
       </section>
 
       <MetricStrip items={[
@@ -114,8 +116,8 @@ export function AttendancePage() {
       {mode === "daily" ? (
         <Panel
           title={`${sectionLabel(section)} - ${formatDate(date)}`}
-          meta={`Recorded by ${day?.recordedBy ?? user.fullName}`}
-          action={<div className="attendance-actions"><div className="search-field search-field--compact"><Search size={17} /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Find learner" /></div><Button variant="secondary" size="sm" onClick={() => { markAllPresent(date, sectionId); toast.success("All learners marked present"); }}>Mark all present</Button></div>}
+          meta={`${canRecord ? "Recorded" : "Read only"} - ${day?.recordedBy ?? "No submitted record"}`}
+          action={<div className="attendance-actions"><div className="search-field search-field--compact"><Search size={17} /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Find learner" /></div>{canRecord ? <Button variant="secondary" size="sm" onClick={() => { markAllPresent(date, sectionId); toast.success("All learners marked present"); }}>Mark all present</Button> : null}</div>}
           flush
         >
           <TableFrame className="table-frame--borderless">
@@ -123,15 +125,16 @@ export function AttendancePage() {
               <thead><tr><th className="number-column">No.</th><th>Learner</th><th className="session-column">AM</th><th className="session-column">PM</th><th>Remarks</th><th>Indicator</th></tr></thead>
               <tbody>
                 {sectionLearners.map((learner, index) => {
-                  const entry = day?.entries[learner.id] ?? { am: "P" as const, pm: "P" as const, remarks: "" };
+                  const entry = day?.entries[learner.id];
+                  const displayEntry = entry ?? { am: "P" as const, pm: "P" as const, remarks: "" };
                   const summary = learnerAttendanceSummary(learner.id, attendanceDays);
                   return (
                     <tr className={summary.atRisk ? "row-danger" : undefined} key={learner.id}>
                       <td>{index + 1}</td>
                       <td><strong>{learnerName(learner)}</strong><small>LRN {learner.lrn}</small></td>
-                      <td><AttendancePicker value={entry.am} label={`${learner.firstName} AM attendance`} onChange={(mark) => setAttendanceMark(date, sectionId, learner.id, "am", mark)} /></td>
-                      <td><AttendancePicker value={entry.pm} label={`${learner.firstName} PM attendance`} onChange={(mark) => setAttendanceMark(date, sectionId, learner.id, "pm", mark)} /></td>
-                      <td><input className="table-input table-input--remarks" value={entry.remarks} placeholder="Optional note" onChange={(event) => setAttendanceRemarks(date, sectionId, learner.id, event.target.value)} /></td>
+                      <td>{canRecord ? <AttendancePicker value={displayEntry.am} label={`${learner.firstName} AM attendance`} onChange={(mark) => setAttendanceMark(date, sectionId, learner.id, "am", mark)} /> : entry ? <Badge tone={entry.am === "A" ? "danger" : entry.am === "L" ? "warning" : "success"}>{entry.am}</Badge> : "-"}</td>
+                      <td>{canRecord ? <AttendancePicker value={displayEntry.pm} label={`${learner.firstName} PM attendance`} onChange={(mark) => setAttendanceMark(date, sectionId, learner.id, "pm", mark)} /> : entry ? <Badge tone={entry.pm === "A" ? "danger" : entry.pm === "L" ? "warning" : "success"}>{entry.pm}</Badge> : "-"}</td>
+                      <td>{canRecord ? <input className="table-input table-input--remarks" value={displayEntry.remarks} placeholder="Optional note" onChange={(event) => setAttendanceRemarks(date, sectionId, learner.id, event.target.value)} /> : entry?.remarks || "-"}</td>
                       <td>{summary.atRisk ? <Badge tone="danger">20% warning</Badge> : <Badge tone="success">On track</Badge>}</td>
                     </tr>
                   );

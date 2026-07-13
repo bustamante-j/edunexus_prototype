@@ -43,6 +43,14 @@ describe("public school website", () => {
     expect(PUBLIC_PROGRAMS.every((program) => program.image.startsWith("/assets/"))).toBe(true);
   });
 
+  it("reserves the correct aspect ratio for the school news image", async () => {
+    render(<MemoryRouter initialEntries={["/"]}><App /></MemoryRouter>);
+    const image = await screen.findByRole("img", { name: "Learners participating in a school activity" }, { timeout: 2500 });
+    expect(image.getAttribute("width")).toBe("1536");
+    expect(image.getAttribute("height")).toBe("1024");
+    expect(image.getAttribute("loading")).toBe("lazy");
+  });
+
   it("shows event details when calendar dates and months are selected", () => {
     render(<EventCalendar events={PUBLIC_EVENTS} />);
 

@@ -41,7 +41,8 @@ const navGroups = [
     label: "School Records",
     items: [
       { to: "/portal/learners", label: "Learners", icon: UsersRound, roles: ["school_head", "admin_officer", "teacher"] },
-      { to: "/portal/attendance", label: "Attendance", icon: CalendarCheck2, roles: ["school_head", "admin_officer", "teacher"] },
+      { to: "/portal/attendance", label: "Attendance", icon: CalendarCheck2, roles: ["school_head", "teacher"] },
+      { to: "/portal/attendance", label: "Attendance reports", icon: CalendarCheck2, roles: ["admin_officer"] },
       { to: "/portal/grades", label: "Class Records", icon: BookOpenCheck, roles: ["school_head", "teacher"] },
       { to: "/portal/promotion", label: "Promotion", icon: GraduationCap, roles: ["school_head", "admin_officer"] },
     ],

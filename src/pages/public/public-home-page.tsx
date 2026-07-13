@@ -93,7 +93,7 @@ export function PublicHomePage() {
 
           <div className="public-bulletin__grid">
             <article className="public-bulletin__lead">
-              <img src="/assets/news-feature.webp" alt="Learners participating in a school activity" />
+              <img src="/assets/news-feature.webp" alt="Learners participating in a school activity" width="1536" height="1024" loading="lazy" />
               <div>
                 <p className="public-meta">{leadAnnouncement.category} / {formatDate(leadAnnouncement.publishedAt)}</p>
                 <h3>{leadAnnouncement.title}</h3>

@@ -138,6 +138,11 @@ function activeUser(state: AppState) {
   return state.users.find((user) => user.id === state.currentUserId);
 }
 
+function canRecordAttendance(state: AppState) {
+  const user = activeUser(state);
+  return user?.role === "school_head" || user?.role === "teacher";
+}
+
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
@@ -220,6 +225,7 @@ export const useAppStore = create<AppState>()(
       },
       ensureAttendanceDay: (date, sectionId) => {
         const state = get();
+        if (!canRecordAttendance(state)) return;
         if (state.attendanceDays.some((day) => day.date === date && day.sectionId === sectionId)) return;
         const user = activeUser(state);
         const entries = Object.fromEntries(
@@ -242,6 +248,7 @@ export const useAppStore = create<AppState>()(
         }));
       },
       setAttendanceMark: (date, sectionId, learnerId, session, mark) => {
+        if (!canRecordAttendance(get())) return;
         get().ensureAttendanceDay(date, sectionId);
         const user = activeUser(get());
         set((state) => ({
@@ -264,6 +271,7 @@ export const useAppStore = create<AppState>()(
         }));
       },
       setAttendanceRemarks: (date, sectionId, learnerId, remarks) => {
+        if (!canRecordAttendance(get())) return;
         get().ensureAttendanceDay(date, sectionId);
         set((state) => ({
           attendanceDays: state.attendanceDays.map((day) =>
@@ -284,6 +292,7 @@ export const useAppStore = create<AppState>()(
         }));
       },
       markAllPresent: (date, sectionId) => {
+        if (!canRecordAttendance(get())) return;
         get().ensureAttendanceDay(date, sectionId);
         const user = activeUser(get());
         set((state) => ({

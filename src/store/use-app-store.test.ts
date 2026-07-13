@@ -52,4 +52,25 @@ describe("prototype store workflows", () => {
     expect(day).toBeDefined();
     expect(Object.values(day!.entries).every((entry) => entry.am === "P" && entry.pm === "P")).toBe(true);
   });
+
+  it("keeps attendance recording read only for the administrative officer", () => {
+    useAppStore.getState().login("diane@edu.ph", "12345678");
+    useAppStore.getState().ensureAttendanceDay("2026-07-14", "grade-4-narra");
+    expect(useAppStore.getState().attendanceDays.some(
+      (item) => item.date === "2026-07-14" && item.sectionId === "grade-4-narra",
+    )).toBe(false);
+
+    const existingDay = useAppStore.getState().attendanceDays[0];
+    const learnerId = Object.keys(existingDay.entries)[0];
+    const originalMark = existingDay.entries[learnerId].am;
+    useAppStore.getState().setAttendanceMark(
+      existingDay.date,
+      existingDay.sectionId,
+      learnerId,
+      "am",
+      originalMark === "A" ? "P" : "A",
+    );
+    const unchangedDay = useAppStore.getState().attendanceDays.find((item) => item.id === existingDay.id)!;
+    expect(unchangedDay.entries[learnerId].am).toBe(originalMark);
+  });
 });

@@ -484,22 +484,31 @@
 
 .public-bulletin__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.55fr);
   gap: 46px;
   padding-top: 34px;
 }
 
 .public-bulletin__lead {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
-  align-items: end;
-  gap: 30px;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px;
 }
 
 .public-bulletin__lead img {
+  display: block;
   width: 100%;
-  height: 360px;
+  height: auto;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
+  object-position: center;
+}
+
+.public-bulletin__lead > div {
+  max-width: 760px;
+  padding-right: 5%;
 }
 
 .public-bulletin__lead h3,
@@ -1411,8 +1420,8 @@
   .public-events-band h2,
   .public-commitments h2 { font-size: 30px; }
   .public-section-heading { align-items: flex-start; flex-direction: column; gap: 14px; }
-  .public-bulletin__lead { grid-template-columns: 1fr; gap: 20px; }
-  .public-bulletin__lead img { height: 280px; }
+  .public-bulletin__lead { gap: 20px; }
+  .public-bulletin__lead > div { padding-right: 0; }
   .public-bulletin__list { grid-template-columns: 1fr; gap: 0; }
   .public-events-band { padding-block: 52px; }
   .event-calendar { grid-template-columns: 1fr; box-shadow: 0 10px 28px rgba(3, 20, 39, 0.14); }
